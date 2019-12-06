@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ExtensionMethods
+{
+    public static class StringExtensions
+    {
+        public static string Capitalize(this String str)
+        {
+            string first = str[0].ToString().ToUpper();
+            return first[0] + str.Substring(1);
+        }
+
+        public static string ToCamelCase(this String str)
+        {
+            StringBuilder sb = new StringBuilder();
+            string[] words = str.Split(" ");
+
+            foreach(string word in words)
+            {
+                sb.Append(word.ToLower().Capitalize());
+            }
+
+            return sb.ToString();
+        }
+
+        public static int WordCount(this String str)
+        {
+            return str.Split(new char[] { ' ', '.', '\n', '\t' }, StringSplitOptions.RemoveEmptyEntries).Length;
+        }
+
+        public static string Smurf(this string s, string toReplace)
+        {
+            return s.Replace(toReplace, "Smurf");
+        }
+    }
+}
